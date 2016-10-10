@@ -1,30 +1,25 @@
 #include <stdio.h>
 
-int main(int argc, char *argv[])
+int main()
 {	
 	int coins = 0;
 	
+	printf("Enter a positive integer representing a number of coins:\n");
 	scanf("%d", &coins);
-	printf("You entered %d coins into the automat.\n", coins);			//zbytek z 20, pak z 10, pak z 5, pak 2, pak 1
+	printf("You entered %d coins into the automat.\n", coins);
+	printf("Minimal amount of coins needed is:\n");
 	
-	int dvacet = coins / 20;
-	int remainder20 = coins % 20;
-	
-	int deset = remainder20 / 10;
-	int remainder10 = remainder20 % 10;
-	
-	int pet = remainder10 / 10;
-	int remainder5 = remainder10 % 10;
-	
-	int dva = remainder5 / 10;
-	int remainder2 = remainder5 % 10;
-	
-	int jedna = remainder2 / 10;
-	int remainder1 = remainder2 % 10;
-	
-	printf("%d %d %d", dvacet);
-	
-	
+	for (int divisor = 20; divisor >= 1; divisor = divisor/2)
+	{
+		int amount = coins / divisor;
+		
+		if (amount != 0)
+		{
+			printf("%d: %dx\n", divisor, amount);
+		}
+		
+		coins = coins % divisor;
+	}
 	
 	return 0;
 }
