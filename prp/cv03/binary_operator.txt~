@@ -14,4 +14,3 @@
 //b1100 >> 2 = b11, v obou pripadech ale zalezi na dvojkovem doplnku
 //vzdy posouvat unsigned char doprava
 //negace ~: ~b101 = b010
-kdyz porovnavam dva floaty, nikdy ==, ale pres absolutni hodnotu odecitanim, fabs(pi - 3.14) < 1E - 10
