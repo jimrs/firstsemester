@@ -1,0 +1,16 @@
+//bitove operace
+//(x) soustavy z= suma od i=0 do nekonecna a index i krat z^i, kde a s indexem i je z {0, ..., z-1}
+// v c nelze zapsat dvojkovou soustavu, jen osmickovou a hexadec a decimal
+// osmickova je 2^3 : zapis 030: kazda cislice ma 3 byty: dvojkove: 000 011 000
+// sestnactkova je 2^4: kazda cislice ma 4 byty
+//
+//and &: b101 & b10=0, jelikoz postupne na bity aplikuju funkci &
+//b100 & b101 = b101
+//or |: b101 | b10 = b111
+//b100 | b101 = b101
+//posun <<: b101 << 1 = b1010
+//b1100 << 2 = b110000
+//posun >>: b101 >> 1 = b10
+//b1100 >> 2 = b11, v obou pripadech ale zalezi na dvojkovem doplnku
+//vzdy posouvat unsigned char doprava
+//negace ~: ~b101 = b010
