@@ -1,15 +1,16 @@
-CFLAGS+=  -pedantic -Wall -std=c99 -O3
+CC=clang
+CFLAGS+=  -pedantic -Wall -Werror -std=c99 -O3
 
-program: main.c 
+program: main.c
 	${CC} ${CFLAGS} main.c -o program
 
 check: program
 	./program < data/pub01.in > tmp.out
 	diff data/pub01.out tmp.out
-	
+
 zip:
-	zip hw01-us.zip main.c
-	
+	zip hw02-us.zip main.c
+
 clean:
 	rm -f *.o
 	rm -f program
