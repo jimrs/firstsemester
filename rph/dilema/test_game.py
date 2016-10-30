@@ -13,7 +13,7 @@ from game import Game
 payoff_matrix = [ [(4,4),(1,6)] , [(6,1),(2,2)] ]
 
 # define the number of iterations
-number_of_iterations=20
+number_of_iterations=100
 
 # create the players
 playerA=player.MyPlayer(payoff_matrix); 
