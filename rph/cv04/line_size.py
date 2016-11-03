@@ -16,6 +16,7 @@ def line_size(r, c, data):
 
     return size
 
+
 def column_size(r, c, data):
     starting_point = data[r][c]
     size = 0
@@ -34,22 +35,45 @@ def column_size(r, c, data):
 
     return size
 
+
 def diagonal_size(r, c, data):
     starting_point = data[r][c]
     size = 0
 
-    for i in range(0, min((len(data) - r), (len(data) - c)), +1):
+    for i in range(0, max((len(data) - r), (len(data) - c)), +1):
+        if (r-i < 0) or (c-i < 0):
+            break
         if starting_point != data[r+i][c+i]:
             break
+        print("coor " + str(r + i) + ":" + str(c + i) + " | value " + str(data[r + i][c + i]))
         if starting_point == data[r+i][c+i]:
             size += 1
 
     for i in range(1, max((len(data) - r), (len(data) - c)), +1):
-        if (r-i <= 0) or (c-i <= 0):
+        if (r-i < 0) or (c-i < 0):
             break
         if starting_point != data[r-i][c-i]:
             break
+        print("coor " + str(r - i) + ":" + str(c - i) + " | value " + str(data[r - i][c - i]))
         if starting_point == data[r-i][c-i]:
+            size += 1
+
+    for i in range(1, max((len(data) - r), (len(data) - c)), +1):
+        if (r - i < 0) or (c - i < 0):
+            break
+        if starting_point != data[r-i][c+i]:
+            break
+        print("coor " + str(r - i) + ":" + str(c + i) + " | value " + str(data[r - i][c + i]))
+        if starting_point == data[r-i][c+i]:
+            size += 1
+
+    for i in range(1, max((len(data) - r), (len(data) - c)), +1):
+        if (r - i < 0) or (c - i < 0):
+            break
+        if starting_point != data[r+i][c-i]:
+            break
+        print("coor " + str(r + i) + ":" + str(c - i) + " | value " + str(data[r + i][c - i]))
+        if starting_point == data[r+i][c-i]:
             size += 1
 
     return size

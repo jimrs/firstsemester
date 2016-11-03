@@ -12,13 +12,13 @@ if __name__ == "__main__":
               [1, 1, 1, 0, 1, 1, 0, 1], [0, 1, 0, 0, 0, 0, 1, 1], [1, 0, 1, 1, 0, 0, 0, 0],
               [0, 1, 1, 1, 0, 1, 1, 1], [1, 1, 0, 1, 0, 1, 1, 1]]
 
-    r = 4
-    c = 1
+    r = 7
+    c = 7
 
-    line = line_size(r, c, seznam)
-    row = column_size(r, c, seznam)
-    # diagonal = diagonal_size(r, c, seznam)
     print_data(seznam)
-    print(line)
-    print(row)
-    # print(diagonal)
+    #line = line_size(r, c, seznam)
+    #row = column_size(r, c, seznam)
+    diagonal = diagonal_size(r, c, seznam)
+    #print(line)
+    #print(row)
+    print(diagonal)
