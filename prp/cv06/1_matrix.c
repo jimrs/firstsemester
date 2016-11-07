@@ -86,13 +86,23 @@ int main()
 	double *mat, *mat_t;
 	int row, col;
 	int *mat_rows, *mat_cols;
+	int alloc; // pocet matic ktere jsem zaalokoval
+	int size; //pocet matic ktere jsem nacetl
 	
-	matarr = (double **)malloc(sizeof(double *) * 100); //100 matic se vejde
-	mat_rows = (double *)malloc(sizeof(double) * 100);
-	mat_cols = (double *)malloc(sizeof(double) * 100);
+	//matarr = (double **)malloc(sizeof(double *) * 100); vejde se 100 matic
+	matarr = (double **)malloc(sizeof(double *) * alloc); //kdyz nevime kolik matic bude
+	mat_rows = (int *)malloc(sizeof(int) * alloc);
+	mat_cols = (int *)malloc(sizeof(int) * alloc);
 	
 	for (size = 0; (mat = readMatrix(&row, &col)) != NULL; size++)	//musim dealokovat to, na co pole pointeru ukazuje
 	{
+		if (size == alloc) {
+			alloc *= 2; //zdvojnasobeni pro realloc
+			matarr = (double **)realloc(sizeof(double *) * alloc); //kdyz nevime kolik matic bude
+			mat_rows = (int *)realloc(sizeof(int) * alloc);
+			mat_cols = (int *)realloc(sizeof(int) * alloc);
+		}
+		
 		matarr[size] = mat;
 		mat_rows[size] = row;
 		mat_cols[size] = col;

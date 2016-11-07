@@ -33,7 +33,7 @@ double *readMatrix(int *row, int *col)
 	double *mat;
 	double v;
 	
-	scanf("%d %d", row, col);
+	scanf("%d %d", row, col); // if != 2 tak return null
 	
 	mat = newMatrix(*row, *col);
 	for (int i = 0; i < *row; i++)
@@ -85,9 +85,47 @@ int main()
 	double **matarr;
 	double *mat, *mat_t;
 	int row, col;
+	int *mat_rows, *mat_cols;
+	int alloc; // pocet matic ktere jsem zaalokoval
+	int size; //pocet matic ktere jsem nacetl
 	
-	matarr[0] = readMatrix(&col, &row);
-	matarr[1] = readMatrix(&col, &row);
+	//matarr = (double **)malloc(sizeof(double *) * 100); vejde se 100 matic
+	matarr = (double **)malloc(sizeof(double *) * alloc); //kdyz nevime kolik matic bude
+	mat_rows = (double *)malloc(sizeof(double) * alloc);
+	mat_cols = (double *)malloc(sizeof(double) * alloc);
+	
+	for (size = 0; (mat = readMatrix(&row, &col)) != NULL; size++)	//musim dealokovat to, na co pole pointeru ukazuje
+	{
+		if (size == alloc) {
+			alloc *= 2; //zdvojnasobeni pro realloc
+			matarr = (double **)realloc(sizeof(double *) * alloc); //kdyz nevime kolik matic bude
+			mat_rows = (double *)realloc(sizeof(double) * alloc);
+			mat_cols = (double *)realloc(sizeof(double) * alloc);
+		}
+		
+		matarr[size] = mat;
+		mat_rows[size] = row;
+		mat_cols[size] = col;
+		
+	}
+	//matarr[0] = readMatrix(&col, &row); obecne napsano ve for cyklu tady nahore
+	//matarr[1] = readMatrix(&col, &row);
+	
+	for (int i = 0; i < size; i++)
+	{
+		printMatrix(matarr[i], mat_rows[i], mat_cols[i]);
+		printf("\n");
+	}
+	
+	for (int i = 0; i < size; i++)
+		delMatrix(matarr[i]);
+	
+	free(matarr);
+	free(mat_rows);
+	free(mat_cols);
+	
+	//kdyz nejde realloc, jde malloc noveho vetsiho useku a zkopirovat tam predchozi obsah
+	//reallocovat na dvojnasobky toho, co mam, je casove vyhodne
 	
 	mat = readMatrix(&row, &col);
 	printMatrix(mat, row, col);
