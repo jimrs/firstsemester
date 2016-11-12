@@ -1,6 +1,6 @@
 import copy
 import time
-#from tkinter import Tk, Canvas, PhotoImage, mainloop
+from tkinter import Tk, Canvas, PhotoImage, mainloop
 from math import sin
 
 
@@ -54,7 +54,7 @@ class GameOfLife:
             for j in range(0, len(self.population[i])):
                 if self.num_life_around(i, j) == 3:
                     new_population[i][j] = 1
-                if self.num_life_around(i, j) > 3:
+                if self.num_life_around(i, j) > 4:
                     new_population[i][j] = 0
                 if self.num_life_around(i, j) == 2:
                     pass
@@ -209,8 +209,8 @@ if __name__ == "__main__":
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
 
-    zoom = 20
-    game = GameOfLife(gosper,False,zoom);
+    zoom = 15
+    game = GameOfLife(gosper,True,zoom);
     game.run_life(1000000)
 
 
