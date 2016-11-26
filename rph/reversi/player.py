@@ -309,3 +309,9 @@ class MyPlayer:
                 valid_moves_no_duplicates.append(item)
 
         return valid_moves_no_duplicates
+
+    def isValid(self, move, valid_moves):
+        if move in valid_moves:
+            return True
+        else:
+            return False
