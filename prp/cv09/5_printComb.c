@@ -1,8 +1,16 @@
 #include <stdio.h>
 
+int isInBuf(const char *buf, char c, int size)
+{
+	
+}
+
 void _printComb(int size, const char *in, char *buf, int pos)
 {
 	const char *c;
+
+	//bez opakovani
+	//if (!isInBuf(buf, *c, pos) // tak pokracovat dal
 
 	if (pos == size) {
 		printf("%s\n", buf);
@@ -10,8 +18,14 @@ void _printComb(int size, const char *in, char *buf, int pos)
 	}
 
 	for (c = in; *c != 0; c++) {
-		buf[pos] = *c;
-		_printComb(size, in, buf, pos+1);
+		if (!isInBuf(buf, *c, pos) {
+			buf[pos] = *c;
+			if (pos == size -1) {
+				printf("%s\n", buf);
+			} else {
+				_printComb(size, in, buf, pos+1);
+			}
+		}
 	}
 }
 
