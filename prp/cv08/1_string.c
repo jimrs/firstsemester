@@ -15,10 +15,17 @@ int main()
 	//posun znaku
 	//pozor na to, ze Z je 90, ale a je 97 tzn je tam mezera!
 	c = c + 5;
-	if (c > 'Z')
+	if (c > 'Z' && c < 'a')
 	{
-		c = 'a' - 'Z';	//plus jedna?
+		c = c + 6;	//plus jedna?
 	}	
+	else if (c > 'z')
+	{
+		c = c - 58;
+	} 
+	
+	putchar(c);
+	putchar('\n');
 
 	return 0;
 }
