@@ -1,6 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+int isLower(char c)
+{
+	if (c <= 'z' && c >= 'a')
+		return 1;
+	else
+		return 0;
+}
+
 int main(int argc, char *argv[])
 {
 	char *cipher = malloc(sizeof(char));
@@ -75,26 +83,41 @@ int main(int argc, char *argv[])
 	}
 
 
-	for (move = 0; move < 58; move++) {
+	for (move = 0; move < 63; move++) {
 		matching = 0;
 
-		for (int i = 0; i < c_size-1; i++) { //size-1 jelikoz na konci je \0
+		for (int i = 0; i < c_size-1; i++) {
 			int current = cipher[i] + move;
 
-			if (current > 'Z' && current < 'a')
-				current = current + 6;
+			if (isLower(cipher[i]) == 1) {
+				if (current > 127) {
+					current = current % 128 + 70;
 
-			else if (current > 'z')
-				current = current - 58;
+					if (current > 'Z')
+						current = current + 6;
 
-			//putchar(current);
+				} else {
+					if (current > 'z')
+						current = current - 58;
+				}
+			} else {
+				if (current > 127) {
+					current = current % 128 + 76;
+
+
+				} else {
+					if (current > 'Z')
+						current = current + 6;
+
+					if (current > 'z')
+						current = current - 58;
+				}
+	
+			}
 
 			if (current == msg[i])
 				matching++;
-
 		}
-
-		//printf(" %d\n", matching);
 
 		if (matching > highest_matching) {
 			highest_matching = matching;
@@ -102,35 +125,41 @@ int main(int argc, char *argv[])
 		}
 	}
 
-
-	//printf("-------------------\n");
-	//printf("%d\n", lowest_move);
-	//printf("%d\n", highest_matching);
-	//printf("-------------------\n");
-
-
-	//printf("%s\n", cipher);
-
-	//char *result = malloc(sizeof(char) * (c_size));
-
 	for (int i = 0; i < c_size-1; i++) {
 		int current = cipher[i] + lowest_move;
-		
-		if (current > 'Z' && current < 'a')
-			cipher[i] = current + 6;
 
-		else if (current > 'z')
-			cipher[i] = current - 58;
-		else
-			cipher[i] = current;
+		if (isLower(cipher[i]) == 1) {
+			if (current > 127) {
+				current = current % 128 + 70;
+
+				if (current > 'Z')
+					current = current + 6;
+			} else {
+				if (current > 'z')
+					current = current - 58;
+			}
+
+		} else {
+			if (current > 127) {
+				current = current % 128 + 76;
+
+			} else {
+				if (current > 'Z')
+					current = current + 6;
+
+				if (current > 'z')
+					current = current - 58;
+			}
 	
+		}
+
+		cipher[i] = current;
 	}
 
 	printf("%s\n", cipher);
 
 	free(cipher);
 	free(msg);
-	//free(result);
 
 	return 0;
 }
