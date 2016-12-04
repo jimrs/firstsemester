@@ -21,7 +21,6 @@ class MyMatrix:
             for line in f:
                 line = line.strip()
                 line = line.split()
-                print(*line)
 
                 numbers = []
                 for element in line:

@@ -89,6 +89,7 @@ int main(int argc, char *argv[])
 		for (int i = 0; i < c_size-1; i++) {
 			int current = cipher[i] + move;
 
+<<<<<<< HEAD
 			if (isLower(cipher[i]) == 1) {
 				if (current > 127) {
 					current = current % 128 + 70;
@@ -114,11 +115,38 @@ int main(int argc, char *argv[])
 				}
 	
 			}
+=======
+			if (current > 'Z' && current < 'a') {
+				current = current + 6;
+			}
+
+			else if (current > 'z' * 2) {
+				current = current - 58*2;
+				if (current > 'Z' && current < 'a') {
+					current = current + 6;
+				}
+			}
+
+			else if (current > 'z') {
+				current = current - 58;
+				if (current > 'Z' && current < 'a') {
+					current = current + 6;
+				}
+
+			}
+
+			putchar(current);
+>>>>>>> 8cc13b258ef83f55f1792b9416ae8c15cea3c4a1
 
 			if (current == msg[i])
 				matching++;
 		}
 
+<<<<<<< HEAD
+=======
+		printf(" %d\n", matching);
+
+>>>>>>> 8cc13b258ef83f55f1792b9416ae8c15cea3c4a1
 		if (matching > highest_matching) {
 			highest_matching = matching;
 			lowest_move = move;
@@ -128,9 +156,16 @@ int main(int argc, char *argv[])
 	for (int i = 0; i < c_size-1; i++) {
 		int current = cipher[i] + lowest_move;
 
+<<<<<<< HEAD
 		if (isLower(cipher[i]) == 1) {
 			if (current > 127) {
 				current = current % 128 + 70;
+=======
+	printf("-------------------\n");
+	printf("%d\n", lowest_move);
+	printf("%d\n", highest_matching);
+	printf("-------------------\n");
+>>>>>>> 8cc13b258ef83f55f1792b9416ae8c15cea3c4a1
 
 				if (current > 'Z')
 					current = current + 6;
@@ -147,9 +182,39 @@ int main(int argc, char *argv[])
 				if (current > 'Z')
 					current = current + 6;
 
+<<<<<<< HEAD
 				if (current > 'z')
 					current = current - 58;
 			}
+=======
+	for (int i = 0; i < c_size-1; i++) {
+		int current = cipher[i] + lowest_move;
+		
+		if (current > 'Z' && current < 'a') {
+			cipher[i] = current + 6;
+		}
+
+		else if (current > 'z') {
+			current = current - 58;
+			if (current > 'Z' && current < 'a') {
+				cipher[i] = current + 6;
+			}
+			else
+				cipher[i] = current;
+		}
+
+		else if (current > 'z') {
+			current = current - 58;
+			if (current > 'Z' && current > 'a')
+				cipher[i] = current + 6;
+			else
+				cipher[i] = current;
+		}
+
+		else {
+			cipher[i] = current;
+		}
+>>>>>>> 8cc13b258ef83f55f1792b9416ae8c15cea3c4a1
 	
 		}
 
