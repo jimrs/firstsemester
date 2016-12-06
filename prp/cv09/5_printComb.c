@@ -18,14 +18,12 @@ void _printComb(int size, const char *in, char *buf, int pos)
 	}
 
 	for (c = in; *c != 0; c++) {
-		if (!isInBuf(buf, *c, pos) {
 			buf[pos] = *c;
 			if (pos == size -1) {
 				printf("%s\n", buf);
 			} else {
 				_printComb(size, in, buf, pos+1);
 			}
-		}
 	}
 }
 
@@ -38,7 +36,7 @@ void printComb(int size, const char *in)
 
 int main()
 {
-	printComb(2, "abc");
+	printComb(3, "abc");
 
 	return 0;
 }
