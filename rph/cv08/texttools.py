@@ -13,3 +13,16 @@ def count_rows_and_words(filename):
                 words += 1
 
     return (rows, words)
+
+def compute_word_frequencies(filename):
+    
+    words = {}
+
+    with open(filename, 'r', encoding='utf-8') as f:
+        for line in f:
+            line = line.split()
+
+            for word in line:
+                words[word] = words.get (word, 0) + 1
+
+    return words
