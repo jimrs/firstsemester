@@ -36,10 +36,6 @@ int main(int argc, char *argv[])
 
 	characters[size] = '\0';
 
-	printf("%s\n", characters);
-	printf("%ld\n", strlen(characters));
-	printf("%d\n", size);
-
 	printComb(size, characters);
 
 	return 0;
